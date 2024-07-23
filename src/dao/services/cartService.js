@@ -14,8 +14,8 @@ const cartService = {
         return await cartRepositorie.createCart(req);
     },
 
-    async addProduct(req, cartId, productId) {
-        const product = await productRepositorie.getProductById(req, productId);
+    async addProduct( cartId, productId) {
+        const product = await productRepositorie.getProductById( productId);
         if (!product) {
             throw new Error(`Producto con ID ${productId} no encontrado`);
         }

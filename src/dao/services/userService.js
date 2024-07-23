@@ -49,24 +49,24 @@ class UserService {
         }
     }
 
-    async register(userData, profileImagePath) {
+    async register(req, userData, profileImagePath) {
         try {
             const { first_name, last_name, email, age, password } = userData;
-
-            const existingUser = await userRepository.findByEmail(email);
+    
+            const existingUser = await userModel.findOne({ email: userData.email });
             if (existingUser) {
                 throw new Error("El usuario ya existe");
             }
-
+    
             const hashedPassword = await bcrypt.hash(password, 10);
             const userDTO = new UserDTO(first_name, last_name, email, age, hashedPassword);
-            const newUser = await userRepository.createUser(userDTO);
-
+            const newUser = await userRepository.createUser(req, userDTO);
+    
             if (profileImagePath) {
                 newUser.profileImage = profileImagePath;
                 await newUser.save();
             }
-
+    
             const access_token = generateToken(newUser);
             return { newUser, access_token };
         } catch (error) {

@@ -23,7 +23,7 @@ export const authToken = (req, res, next) => {
 };
 
 export const generateToken = (user) => {
-    const token = jwt.sign({ _id: user._id }, PRIVATE_KEY, { expiresIn: "5m" });
+    const token = jwt.sign({ _id: user._id }, PRIVATE_KEY, { expiresIn: "1h" });
     return token;
 };
 

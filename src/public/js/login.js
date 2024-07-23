@@ -14,6 +14,7 @@ form.addEventListener("submit", (e) => {
       "Content-Type": "application/json",
     },
   }).then((response) => {
+    console.log('Response:', response);
     if (response.status === 200) {
         localStorage.setItem('username', obj.username);
         window.location.replace("/chat");

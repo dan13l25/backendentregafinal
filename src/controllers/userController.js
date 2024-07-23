@@ -70,7 +70,9 @@ class UserController {
         const userData = req.body;
         const profileImagePath = req.file ? req.file.path : null;
         try {
-            const { newUser, access_token } = await this.userService.register(userData, profileImagePath);
+            console.log('Registering user with data:', userData);
+            const { newUser, access_token } = await this.userService.register(req, userData, profileImagePath);
+            
             req.session.token = access_token;
             req.session.userId = newUser._id;
             req.session.user = {
@@ -79,14 +81,17 @@ class UserController {
                 age: newUser.age,
                 role: newUser.role
             };
+            
             res.cookie("jwtToken", access_token, {
                 httpOnly: true,
                 secure: true,
                 sameSite: "strict"
             });
+            
             res.render('registerSuccess', { newUser, message: "Registro exitoso" });
         } catch (error) {
             req.logger.error("Error al registrar usuario:", error.message);
+            console.error("Detailed error during registration:", error);
             next(CustomError.createError({
                 name: "RegisterError",
                 message: "Error al registrar usuario",
@@ -95,6 +100,7 @@ class UserController {
             }));
         }
     }
+    
 
     async restorePassword(req, res, next) {
         const { email, password } = req.body;

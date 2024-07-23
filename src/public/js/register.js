@@ -10,6 +10,7 @@ form.addEventListener("submit", (e) => {
       body: data,
     })
     .then(response => {
+      console.log('Response:', response);
       if (response.status === 200) {
         return response.json();
       } else {

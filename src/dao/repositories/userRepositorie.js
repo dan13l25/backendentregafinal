@@ -3,7 +3,7 @@ import userModel from "../models/users.js";
 const userRepository = {
     findByEmail: async (req, email) => {
         try {
-            const user = await userModel.findOne({ email });
+            const user = await userModel.findOne({ email: email });
             return user;
         } catch (error) {
             req.logger.error("Error al buscar usuario por correo electrónico:", error.message);
@@ -26,13 +26,12 @@ const userRepository = {
         }
     },    
 
-    createUser: async (req, userData) => {
+    createUser: async ( userData) => {
         try {
             const newUser = new userModel(userData);
             await newUser.save();
             return newUser;
         } catch (error) {
-            req.logger.error("Error al crear usuario:", error.message);
             throw new Error("Error al crear usuario: " + error.message);
         }
     },
