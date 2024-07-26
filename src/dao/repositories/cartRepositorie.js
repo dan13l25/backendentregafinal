@@ -118,7 +118,18 @@ const cartRepositorie = {
         } catch (error) {
           throw new Error("Error al vaciar el carrito: " + error.message);
         }
-      }
+      },
+
+      findByUserId: async (userId) => {
+        try {
+            const cart = await Cart.findOne({ user: userId });
+
+            return cart;
+        }
+        catch (error) {
+            throw new Error("Error al obtener el carrito por ID: " + error.message);
+        }
+    },
 
 };
 

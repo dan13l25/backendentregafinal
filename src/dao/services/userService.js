@@ -40,6 +40,7 @@ class UserService {
         }
     }
 
+
     async getRegister() {
         try {
             return "register";
@@ -53,7 +54,7 @@ class UserService {
         try {
             const { first_name, last_name, email, age, password } = userData;
     
-            const existingUser = await userModel.findOne({ email: userData.email });
+            const existingUser = await userRepository.findByEmail(email);
             if (existingUser) {
                 throw new Error("El usuario ya existe");
             }

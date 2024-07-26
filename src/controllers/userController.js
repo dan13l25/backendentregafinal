@@ -39,7 +39,7 @@ class UserController {
                 secure: true,
                 sameSite: "strict"
             });
-            res.json({ message: "Inicio de sesión exitoso", access_token });
+            res.status(200  ).json({ message: "Inicio de sesión exitoso", access_token });
         } catch (error) {
             req.logger.error("Error al iniciar sesión:", error.message);
             next(CustomError.createError({
@@ -88,7 +88,7 @@ class UserController {
                 sameSite: "strict"
             });
             
-            res.render('registerSuccess', { newUser, message: "Registro exitoso" });
+            res.status(200).render('registerSuccess', { newUser, message: "Registro exitoso" });
         } catch (error) {
             req.logger.error("Error al registrar usuario:", error.message);
             console.error("Detailed error during registration:", error);

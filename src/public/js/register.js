@@ -12,7 +12,7 @@ form.addEventListener("submit", (e) => {
     .then(response => {
       console.log('Response:', response);
       if (response.status === 200) {
-        return response.json();
+        window.location.href = "/api/users/login";
       } else {
         errorMessage.textContent = 'Este email ya es un usuario. Logueate';
         errorMessage.style.display = 'block';
@@ -33,7 +33,7 @@ form.addEventListener("submit", (e) => {
       console.log("User Id:", userId);
       console.log("user rol:", userRole)
   
-      window.location.href = "/api/products/";
+      window.location.href = "/api/users/login";
     })
     .catch(error => {
         console.error('Error en el registro:', error);

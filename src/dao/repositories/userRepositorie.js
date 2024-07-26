@@ -1,9 +1,9 @@
 import userModel from "../models/users.js";
 
 const userRepository = {
-    findByEmail: async (req, email) => {
+    findByEmail: async ( email) => {
         try {
-            const user = await userModel.findOne({ email: email });
+            const user = await userModel.findOne({  email: email });
             return user;
         } catch (error) {
             req.logger.error("Error al buscar usuario por correo electrónico:", error.message);
@@ -26,18 +26,19 @@ const userRepository = {
         }
     },    
 
-    createUser: async ( userData) => {
+    createUser: async (req, userData) => {
         try {
             const newUser = new userModel(userData);
             await newUser.save();
             return newUser;
         } catch (error) {
+            req.logger.error("error al crear usuario",error.message)
             throw new Error("Error al crear usuario: " + error.message);
         }
     },
 
     uploadDocuments: async (req, user, documents) => {
-        try {
+         try {
             user.documents = [...user.documents, ...documents];
             await user.save();
             return user;
@@ -46,6 +47,7 @@ const userRepository = {
             throw error;
         }
     },
+
 
     findAll: async () => {
         try {
