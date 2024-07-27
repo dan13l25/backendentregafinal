@@ -26,11 +26,13 @@ const productSchema = new Schema({
     },
     price: {
         type: Number,
-        required: true
+        required: true,
+        min: [0, "Price must be a positive number"]
     },
     stock: {
         type: Number,
-        required: true
+        required: true,
+        min: [0, "Stock must be a positive number"]
     },
     status: {
         type: Boolean,

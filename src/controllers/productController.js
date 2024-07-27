@@ -118,6 +118,16 @@ class ProductController {
             }));
         }
 
+        if (price < 0 || stock < 0) {
+            return next(CustomError.createError({
+                name: "ValidationError",
+                message: "Price and Stock cannot be negative",
+                code: errorTypes.ERROR_BAD_REQUEST,
+                description: "Price and stock must be non-negative values"
+            }));
+        }
+
+
         let owner = "admin";
         if (userRole === "premium") {
             owner = req.session.user.email; 
@@ -202,6 +212,15 @@ class ProductController {
     async updateProduct(req, res, next) {
         const { pid } = req.params;
         const newData = req.body;
+
+        if (newData.price < 0 || newData.stock < 0) {
+            return next(CustomError.createError({
+                name: "ValidationError",
+                message: "Price and Stock cannot be negative",
+                code: errorTypes.ERROR_BAD_REQUEST,
+                description: "Price and stock must be non-negative values"
+            }));
+        }
 
         try {
             const updatedProduct = await productService.updateProduct(pid, newData);
