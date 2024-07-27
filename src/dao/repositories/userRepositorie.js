@@ -27,6 +27,10 @@ const userRepository = {
     },    
 
     createUser: async (req, userData) => {
+        if (userData.age < 0) {
+            throw new Error("La edad no puede ser un número negativo");
+        }
+
         try {
             const newUser = new userModel(userData);
             await newUser.save();

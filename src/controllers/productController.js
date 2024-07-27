@@ -7,7 +7,6 @@ import { transporter } from "../config/mailer.js";
 
 class ProductController {
     constructor() {
-        console.log("productController funciona");
     }
 
     async getProducts(req, res, next) {

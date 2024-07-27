@@ -13,7 +13,6 @@ export const transporter = nodemailer.createTransport({
 })
 
 transporter.verify().then(() => {
-    console.log("Mensajes listos");
 }).catch(error => {
     console.error("Error en la configuración del transporte:", error);
 }); 

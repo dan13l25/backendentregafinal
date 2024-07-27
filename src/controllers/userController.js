@@ -69,6 +69,18 @@ class UserController {
     async register(req, res, next) {
         const userData = req.body;
         const profileImagePath = req.file ? req.file.path : null;
+
+        // Validación de edad negativa
+        if (userData.age < 0) {
+            req.logger.error("Error: La edad no puede ser un número negativo");
+            return next(CustomError.createError({
+                name: "RegisterError",
+                message: "La edad no puede ser un número negativo",
+                code: errorTypes.ERROR_VALIDATION,
+                description: "La edad proporcionada es negativa"
+            }));
+        }
+
         try {
             console.log('Registering user with data:', userData);
             const { newUser, access_token } = await this.userService.register(req, userData, profileImagePath);
@@ -100,6 +112,7 @@ class UserController {
             }));
         }
     }
+
     
 
     async restorePassword(req, res, next) {

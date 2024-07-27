@@ -4,7 +4,6 @@ import { CustomError } from "../utils/customError.js";
 
 export default class CartController {
     constructor() {
-        console.log("CartController funciona");
     }
 
     async getCartById(req, res, next) {
