@@ -47,7 +47,7 @@ class UserService {
         } catch (error) {
             logger.error("Error al obtener la vista de registro:", error.message);
             throw error;
-        }
+        } 
     }
 
     async register(req, userData, profileImagePath) {
