@@ -1,5 +1,5 @@
 import productService from "../dao/services/productService.js";
-import ProductDTO from "../dao/DTO/productDTO.js";
+import ProductDTO from "../dao/DTO/ProductDTO.js"
 import { errorTypes } from "../utils/errorTypes.js";
 import { succesTypes } from "../utils/errorTypes.js";
 import { CustomError } from "../utils/customError.js";
