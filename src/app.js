@@ -10,7 +10,6 @@ import { errorHandler } from "./middlewares/errorHandler.js";
 import { addLogger } from "./utils/loggers-env.js";
 import cartService from "./dao/services/cartService.js";
 import cors from "cors"
-import { PORT } from "./utils.js"
 
 const app = express(); 
 const port = PORT || 3000
