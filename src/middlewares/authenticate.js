@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { PRIVATE_KEY } from '../utils.js';
 import userRepository from "../dao/repositories/userRepositorie.js";
 
 export const authenticate = async (req, res, next) => {

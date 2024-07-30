@@ -1,7 +1,7 @@
 import userRepository from "../repositories/userRepositorie.js";
 import bcrypt from "bcrypt";
 import { generateToken } from "../../config/jwtConfig.js";
-import { createHash, isValidPassword } from "../../utils.js";
+import { createHash, isValidPassword, ADMIN_EMAIL, ADMIN_PASSWORD, EMAIL_USERNAME } from "../../utils.js";
 import UserDTO from "../DTO/UserDTO.js";
 import { devLogger as logger } from "../../utils/loggers.js";
 import crypto from "crypto";

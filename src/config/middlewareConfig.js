@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import passport from "passport";
+import { MONGO_URL } from "../utils.js";
 import __dirname from "../utils.js";
 import Handlebars from "../utils/handlebarsHelp.js";
 import initializePassport from "./passportConfig.js";

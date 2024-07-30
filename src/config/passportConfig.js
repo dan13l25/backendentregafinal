@@ -4,6 +4,7 @@ import userModel from "../dao/models/users.js";
 import { createHash, isValidPassword } from "../utils.js";
 import GitHubStrategy from "passport-github2";
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
+import { PRIVATE_KEY, CLIENT_ID, CLIENT_SECRET, CALLBACK_URL } from "../utils.js";
 import { CustomError } from "../utils/customError.js"; 
 import { errorTypes } from "../utils/errorTypes.js";  
 
